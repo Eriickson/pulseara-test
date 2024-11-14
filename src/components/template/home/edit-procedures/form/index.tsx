@@ -68,7 +68,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                             placeholder="Ej: 4563523"
                             w="full"
                             maxWidth={{ md: "181px" }}
-                            {...register(`procedures.${index}.name`)}
+                            {...register(`procedures.${index}.name`, { required: true })}
                           />
                           <IconButton
                             hideFrom={{ base: "md" }}
@@ -87,7 +87,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                           placeholder="Ej: 4563523"
                           w="full"
                           maxWidth={{ md: "146px" }}
-                          {...register(`procedures.${index}.code`)}
+                          {...register(`procedures.${index}.code`, { required: true })}
                         />
                       </GridItem>
                       <GridItem>
@@ -96,7 +96,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                           placeholder="Ej: 4563523"
                           w="full"
                           maxWidth={{ md: "146px" }}
-                          {...register(`procedures.${index}.claimed`)}
+                          {...register(`procedures.${index}.claimed`, { required: true })}
                         />
                       </GridItem>
                       <GridItem>
@@ -105,7 +105,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                           placeholder="Ej: 4563523"
                           w="full"
                           maxWidth={{ md: "146px" }}
-                          {...register(`procedures.${index}.difference`)}
+                          {...register(`procedures.${index}.difference`, { required: true })}
                         />
                       </GridItem>
                       <GridItem>
@@ -114,7 +114,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                           placeholder="Ej: 4563523"
                           w="full"
                           maxWidth={{ md: "146px" }}
-                          {...register(`procedures.${index}.authorized`)}
+                          {...register(`procedures.${index}.authorized`, { required: true })}
                         />
                       </GridItem>
                     </SimpleGrid>

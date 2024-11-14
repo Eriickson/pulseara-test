@@ -6,12 +6,12 @@ export const schema = zod.object({
   procedures: zod.array(
     zod.object({
       id: zod.string().optional(),
-      name: zod.string(),
-      code: zod.string(),
+      name: zod.string().min(1),
+      code: zod.string().min(1),
       procedureNumber: zod.number(),
-      claimed: zod.string(),
-      difference: zod.string(),
-      authorized: zod.string(),
+      claimed: zod.string().min(1),
+      difference: zod.string().min(1),
+      authorized: zod.string().min(1),
     })
   ),
 });

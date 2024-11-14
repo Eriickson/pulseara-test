@@ -28,8 +28,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           fontSize="16px"
           w={{ base: width }}
           placeholder={placeholder}
-          ref={ref}
           {...props}
+          ref={ref}
         />
       </Field.Root>
     );
