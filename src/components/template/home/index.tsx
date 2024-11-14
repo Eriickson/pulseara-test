@@ -1,29 +1,11 @@
-import { useEffect } from "react";
+import React from "react";
 
 import { Box, Container, Heading, Stack } from "@chakra-ui/react";
 
-import { generateClient } from "aws-amplify/api";
-
 import { EditProcedures } from "./edit-procedures";
 import { ProceduresList } from "./procedures-list";
-import { listProcedures } from "../../../graphql/queries";
 
-const client = generateClient();
 export const HomePageTemplate = () => {
-  async function getProcedures() {
-    try {
-      const result = await client.graphql({ query: listProcedures, variables: { limit: 1 } });
-
-      console.log(result);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  useEffect(() => {
-    getProcedures();
-  }, []);
-
   return (
     <Box minH="100vh" backgroundColor="#EDF3F1">
       <Container maxW="1440px" paddingX={{ base: "4", md: "88px" }} paddingTop={{ base: "4", md: "99px" }}>

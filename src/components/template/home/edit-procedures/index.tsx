@@ -2,21 +2,18 @@ import React from "react";
 
 import { Dialog, Flex, Heading, chakra } from "@chakra-ui/react";
 
-import { v4 as uuidv4 } from "uuid";
-
 import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
 import { EditProceduresFormValues } from "./form/schema";
-import { procedures } from "../procedures-list";
-import { generateClient } from "aws-amplify/api";
-
-const client = generateClient();
+import { useProcedure } from "../../../../context/procedure";
 
 export const EditProcedures: React.FC = () => {
+  const { procedures, updateProcedures } = useProcedure();
+
   const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
   async function handleSubmit(values: EditProceduresFormValues) {
-    console.log(values);
+    await updateProcedures(values.procedures);
   }
 
   return (

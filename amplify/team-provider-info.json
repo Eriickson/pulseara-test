@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-pulsearatest-dev-fc41d-authRole",
-      "UnauthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-fc41d-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-fc41d-authRole",
+      "AuthRoleName": "amplify-pulsearatest-dev-1969c-authRole",
+      "UnauthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-1969c-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-1969c-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-pulsearatest-dev-fc41d-deployment",
-      "UnauthRoleName": "amplify-pulsearatest-dev-fc41d-unauthRole",
-      "StackName": "amplify-pulsearatest-dev-fc41d",
-      "StackId": "arn:aws:cloudformation:us-east-2:060795938765:stack/amplify-pulsearatest-dev-fc41d/76798570-a29f-11ef-b460-02419c0b2a1d",
-      "AmplifyAppId": "d30dfguv7mqp8r"
+      "DeploymentBucketName": "amplify-pulsearatest-dev-1969c-deployment",
+      "UnauthRoleName": "amplify-pulsearatest-dev-1969c-unauthRole",
+      "StackName": "amplify-pulsearatest-dev-1969c",
+      "StackId": "arn:aws:cloudformation:us-east-2:060795938765:stack/amplify-pulsearatest-dev-1969c/cd86ac70-a2aa-11ef-9a77-020463e2bf57",
+      "AmplifyAppId": "d3400o0k4p0s39"
     },
     "categories": {
       "api": {
