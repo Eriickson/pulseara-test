@@ -29,7 +29,7 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
     const proceduresToCreate = procedures.filter((procedure) => procedure.id === "");
     const proceduresToUpdate = procedures.filter((procedure) => procedure.id !== "");
 
-    const updatedProcedures = await Promise.all(
+    const createdProcedures = await Promise.all(
       proceduresToCreate.map(async (procedure) => {
         procedure.id = uuidv4();
 
@@ -40,10 +40,21 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
         return response.data.createProcedure;
       })
     );
-    console.log(updatedProcedures);
+
+    const updatedProcedures = await Promise.all(
+      proceduresToUpdate.map(async (procedure) => {
+        const response = (await client.graphql({
+          query: updateProcedure,
+          variables: { input: procedure },
+        })) as GraphQLResult<{ updateProcedure: IProcedure }>;
+        return response.data.updateProcedure;
+      })
+    );
+
+    console.log(createdProcedures);
     console.log(proceduresToUpdate);
 
-    setProcedures((prev) => [...prev, ...updatedProcedures]);
+    setProcedures([...procedures, ...createdProcedures, ...updatedProcedures]);
   }
 
   async function getProcedures() {
