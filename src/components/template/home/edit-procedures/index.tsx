@@ -14,7 +14,7 @@ export const EditProcedures: React.FC = () => {
 
   return (
     <>
-      <Dialog.Root placement="center" size={"2xl" as any}>
+      <Dialog.Root placement="center" size="cover">
         <Dialog.Backdrop />
         <Dialog.Trigger>
           <Button>Editar procedimientos</Button>
