@@ -8,9 +8,17 @@ interface IButtonProps {
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
   asChild?: boolean;
+  form?: string;
 }
 
-export const Button: FC<IButtonProps> = ({ asChild, children, variant = "primary", onClick, type = "button" }) => {
+export const Button: FC<IButtonProps> = ({
+  form,
+  asChild,
+  children,
+  variant = "primary",
+  onClick,
+  type = "button",
+}) => {
   return (
     <ChakraButton
       fontWeight="bold"
@@ -22,8 +30,9 @@ export const Button: FC<IButtonProps> = ({ asChild, children, variant = "primary
       borderWidth={variant === "primary" ? "0" : "2px"}
       borderColor={variant === "primary" ? "transparent" : "#D6D6EB"}
       onClick={onClick}
-      type={type}
+      type={form ? "submit" : type}
       asChild={asChild}
+      form={form}
     >
       {children}
     </ChakraButton>

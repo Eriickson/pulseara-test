@@ -47,7 +47,7 @@ export const EditProcedures: React.FC = () => {
               <Dialog.CloseTrigger>
                 <Button variant="secondary">Cancelar</Button>
               </Dialog.CloseTrigger>
-              <Button onClick={() => editProceduresFormRef.current?.onSubmit()}>Guardar Cambios</Button>
+              <Button form="edit-procedures-form">Guardar Cambios</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
