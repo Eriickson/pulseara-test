@@ -5,10 +5,11 @@ import { Dialog } from "@chakra-ui/react";
 import { EditProceduresForm } from "./form";
 import { Button } from "../../../ui/button";
 import { EditProceduresFormValues } from "./form/schema";
+import { procedures } from "../procedures-list";
 
 export const EditProcedures: React.FC = () => {
   async function handleSubmit(values: EditProceduresFormValues) {
-    console.log({ values });
+    console.log(values);
   }
 
   return (
@@ -24,7 +25,7 @@ export const EditProcedures: React.FC = () => {
             <Dialog.Title />
           </Dialog.Header>
           <Dialog.Body>
-            <EditProceduresForm onSubmit={handleSubmit} />
+            <EditProceduresForm onSubmit={handleSubmit} defaultValues={{ procedures: procedures }} />
           </Dialog.Body>
           <Dialog.Footer />
         </Dialog.Content>

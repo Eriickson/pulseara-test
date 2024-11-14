@@ -1,5 +1,5 @@
 export interface IProcedure {
-  procedure: string;
+  name: string;
   code: string;
   claimed: string;
   difference: string;

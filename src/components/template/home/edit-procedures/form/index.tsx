@@ -9,10 +9,11 @@ import { EditProceduresFormValues, resolver } from "./schema";
 
 interface IEditProceduresFormProps {
   onSubmit: (values: EditProceduresFormValues) => void;
+  defaultValues?: Partial<EditProceduresFormValues>;
 }
 
-export const EditProceduresForm: React.FC<IEditProceduresFormProps> = ({ onSubmit }) => {
-  const { control, register, handleSubmit } = useForm<EditProceduresFormValues>({ resolver });
+export const EditProceduresForm: React.FC<IEditProceduresFormProps> = ({ onSubmit, defaultValues }) => {
+  const { control, register, handleSubmit } = useForm<EditProceduresFormValues>({ resolver, defaultValues });
   const { fields, append } = useFieldArray({ control, name: "procedures" });
 
   return (
