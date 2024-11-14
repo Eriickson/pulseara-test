@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Button, Dialog } from "@chakra-ui/react";
+import { Dialog } from "@chakra-ui/react";
 import { EditProceduresForm } from "./form";
+import { Button } from "../../../ui/button";
 
 export const EditProcedures = () => {
   return (
