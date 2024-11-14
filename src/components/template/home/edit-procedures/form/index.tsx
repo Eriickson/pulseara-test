@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 
 import { useFieldArray, useForm } from "react-hook-form";
 
-import { Box, Fieldset, GridItem, Separator, SimpleGrid, Stack } from "@chakra-ui/react";
+import { Box, Fieldset, GridItem, IconButton, Separator, SimpleGrid, Stack } from "@chakra-ui/react";
 import { EditProceduresFormValues, resolver } from "./schema";
 import { TextField } from "./text-field";
 
@@ -44,14 +44,17 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
           <Fieldset.Content>
             <Stack spaceY={{ base: "2", md: "32px" }}>
               {fields.map((field, index) => (
-                <React.Fragment key={field.id}>
+                <Box key={field.id} position="relative">
                   {index !== 0 ? <Separator hideFrom="md" /> : null}
+                  <IconButton position="absolute" variant="surface" size="sm" bottom="1" left="-10">
+                    x
+                  </IconButton>
                   <SimpleGrid
                     columns={{ base: 2, md: 5 }}
                     gapX={{ base: "4", md: "48px" }}
                     gapY={{ base: "4", md: "0" }}
                   >
-                    <GridItem colSpan={2}>
+                    <GridItem colSpan={{ base: 2, md: 1 }}>
                       <TextField
                         label={`Procedimiento ${index + 1}`}
                         placeholder="Ej: 4563523"
@@ -97,7 +100,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                       />
                     </GridItem>
                   </SimpleGrid>
-                </React.Fragment>
+                </Box>
               ))}
             </Stack>
           </Fieldset.Content>
