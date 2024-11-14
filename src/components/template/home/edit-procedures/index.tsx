@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Dialog, Flex, Heading, chakra } from "@chakra-ui/react";
+import { Dialog, Flex, HStack, Heading, Image, Text, chakra } from "@chakra-ui/react";
 
 import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
@@ -38,7 +38,7 @@ export const EditProcedures: React.FC = () => {
         <Dialog.Backdrop />
         {/* @ts-ignore */}
         <Dialog.Trigger asChild>
-          <Button>Editar procedimientos</Button>
+          <Button leftComponent={<Image src="/assets/edit.svg" />}>Editar procedimientos</Button>
         </Dialog.Trigger>
         <Dialog.Positioner>
           <Dialog.Content>
@@ -56,7 +56,10 @@ export const EditProcedures: React.FC = () => {
                   fontWeight="bold"
                   color="#07B284"
                 >
-                  Añadir procedimiento
+                  <HStack>
+                    <Image src="/assets/plus.svg" />
+                    <Text fontFamily="Open Sans">Añadir procedimiento</Text>
+                  </HStack>
                 </chakra.button>
               </Flex>
             </Dialog.Header>

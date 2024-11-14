@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Button as ChakraButton } from "@chakra-ui/react";
+import { Button as ChakraButton, HStack } from "@chakra-ui/react";
 
 interface IButtonProps {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ interface IButtonProps {
   asChild?: boolean;
   form?: string;
   loading?: boolean;
+  leftComponent?: React.ReactNode;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -20,6 +21,7 @@ export const Button: FC<IButtonProps> = ({
   onClick,
   type = "button",
   loading,
+  leftComponent,
 }) => {
   return (
     <ChakraButton
@@ -37,7 +39,10 @@ export const Button: FC<IButtonProps> = ({
       form={form}
       disabled={loading}
     >
-      {children}
+      <HStack>
+        {leftComponent}
+        {children}
+      </HStack>
     </ChakraButton>
   );
 };
