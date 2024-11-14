@@ -24,9 +24,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
     const { fields, append } = useFieldArray({ control, name: "procedures" });
 
     useImperativeHandle(ref, () => ({
-      onSubmit: () => {
-        handleSubmit(onSubmit)();
-      },
+      onSubmit: handleSubmit(onSubmit),
       addProcedure() {
         append({ id: "", authorized: "", claimed: "", code: "", difference: "", name: "" });
       },
