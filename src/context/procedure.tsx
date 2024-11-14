@@ -5,7 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 import { IProcedure } from "../types/procedure";
 import { listProcedures } from "../graphql/queries";
-import { updateProcedure, deleteProcedure, createProcedure } from "../graphql/mutations";
+import { diff } from "deep-object-diff";
+
+import { updateProcedure, createProcedure } from "../graphql/mutations";
 
 export interface ProcedureContextValue {
   procedures: IProcedure[];
@@ -25,11 +27,11 @@ const client = generateClient();
 export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children }) => {
   const [procedures, setProcedures] = useState<IProcedure[]>([]);
 
-  async function updateProcedures(procedures: IProcedure[]) {
-    const proceduresToCreate = procedures.filter((procedure) => procedure.id === "");
-    const proceduresToUpdate = procedures.filter((procedure) => procedure.id !== "");
+  async function updateProcedures(newProcedures: IProcedure[]) {
+    const proceduresToCreate = newProcedures.filter((procedure) => procedure.id === "");
+    const proceduresToUpdate = newProcedures.filter((procedure) => procedure.id !== "");
 
-    const createdProcedures = await Promise.all(
+    await Promise.all(
       proceduresToCreate.map(async (procedure) => {
         procedure.id = uuidv4();
 
@@ -41,19 +43,22 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       })
     );
 
-    const updatedProcedures = await Promise.all(
-      proceduresToUpdate.map(async (procedure) => {
-        const response = (await client.graphql({
-          query: updateProcedure,
-          variables: { input: procedure },
-        })) as GraphQLResult<{ updateProcedure: IProcedure }>;
-        return response.data.updateProcedure;
-      })
+    await Promise.all(
+      proceduresToUpdate
+        .filter((procedureToFilter) => {
+          const procedureFound = procedures.find((procedure) => procedure.id === procedureToFilter.id);
+          return procedureFound ? Object.keys(diff(procedureFound, procedureToFilter)).length > 0 : false;
+        })
+        .map(async (procedure) => {
+          const response = (await client.graphql({
+            query: updateProcedure,
+            variables: { input: procedure },
+          })) as GraphQLResult<{ updateProcedure: IProcedure }>;
+          return response.data.updateProcedure;
+        })
     );
 
-    let newProcedures = [...createdProcedures, ...updatedProcedures];
-
-    setProcedures(newProcedures);
+    await getProcedures();
   }
 
   async function getProcedures() {
@@ -62,10 +67,10 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
         listProcedures: { items: IProcedure[] };
       }>;
 
-      console.log(result.data?.listProcedures.items);
-
       setProcedures(result.data?.listProcedures.items || []);
-    } catch (err) {}
+    } catch (err) {
+      console.log("Error fetching procedures", err);
+    }
   }
 
   useEffect(() => {
