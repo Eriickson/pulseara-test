@@ -3,6 +3,7 @@ export interface IProcedure {
   name: string;
   code: string;
   claimed: string;
+  procedureNumber: number;
   difference: string;
   authorized: string;
 }

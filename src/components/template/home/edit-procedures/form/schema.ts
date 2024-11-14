@@ -8,6 +8,7 @@ export const schema = zod.object({
       id: zod.string(),
       name: zod.string(),
       code: zod.string(),
+      procedureNumber: zod.number(),
       claimed: zod.string(),
       difference: zod.string(),
       authorized: zod.string(),

@@ -26,7 +26,15 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
 
     useImperativeHandle(ref, () => ({
       addProcedure() {
-        append({ id: "", authorized: "", claimed: "", code: "", difference: "", name: "" });
+        append({
+          id: "",
+          authorized: "",
+          claimed: "",
+          code: "",
+          difference: "",
+          name: "",
+          procedureNumber: (defaultValues.procedures?.length || 0) + 1,
+        });
       },
     }));
 
