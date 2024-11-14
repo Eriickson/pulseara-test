@@ -45,7 +45,8 @@ export const EditProcedures: React.FC = () => {
               <EditProceduresForm onSubmit={handleSubmit} ref={editProceduresFormRef} defaultValues={{ procedures }} />
             </Dialog.Body>
             <Dialog.Footer>
-              <Dialog.CloseTrigger>
+              {/* @ts-ignore */}
+              <Dialog.CloseTrigger asChild>
                 <Button variant="secondary">Cancelar</Button>
               </Dialog.CloseTrigger>
               <Button form="edit-procedures-form">Guardar Cambios</Button>
