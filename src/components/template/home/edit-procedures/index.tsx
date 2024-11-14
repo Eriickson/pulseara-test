@@ -35,13 +35,13 @@ export const EditProcedures: React.FC = () => {
         open={open}
         onOpenChange={(e: { open: boolean }) => setOpen(e.open)}
       >
-        <Dialog.Backdrop />
         {/* @ts-ignore */}
         <Dialog.Trigger asChild>
           <Button leftComponent={<Image src="/assets/edit.svg" />}>Editar procedimientos</Button>
         </Dialog.Trigger>
         <Portal>
           <Dialog.Positioner>
+            <Dialog.Backdrop />
             <Dialog.Content>
               <Box pos="absolute" top="0" right="0">
                 <Dialog.CloseTrigger>
