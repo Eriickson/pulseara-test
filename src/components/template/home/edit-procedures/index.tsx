@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Dialog, Flex, HStack, Heading, Image, Portal, Text, chakra } from "@chakra-ui/react";
+import { Box, Dialog, Flex, HStack, Heading, IconButton, Image, Portal, Text, chakra } from "@chakra-ui/react";
 
 import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
@@ -43,10 +43,16 @@ export const EditProcedures: React.FC = () => {
         <Portal>
           <Dialog.Positioner>
             <Dialog.Content>
-              <Dialog.CloseTrigger />
-              <Dialog.Header>
+              <Box pos="absolute" top="0" right="0">
+                <Dialog.CloseTrigger>
+                  <IconButton variant="ghost">
+                    <Image src="/assets/x.svg" />
+                  </IconButton>
+                </Dialog.CloseTrigger>
+              </Box>
+              <Dialog.Header px={{ base: "4", md: "58px" }} pt={{ base: "4", md: "58px" }}>
                 <Flex alignItems={{ md: "center" }} flexDirection={{ base: "column", md: "row" }}>
-                  <Heading color="#1E2469" fontSize={{ md: "32px" }} lineHeight={{ md: "44.8px" }}>
+                  <Heading ml={{ md: "10" }} color="#1E2469" fontSize={{ md: "32px" }} lineHeight={{ md: "44.8px" }}>
                     Procedimientos
                   </Heading>
                   <chakra.button
@@ -71,7 +77,7 @@ export const EditProcedures: React.FC = () => {
                   defaultValues={{ procedures: procedures.map((procedure) => ({ ...procedure, delete: false })) }}
                 />
               </Dialog.Body>
-              <Dialog.Footer>
+              <Dialog.Footer px={{ base: "4", md: "58px" }} pb={{ base: "4", md: "58px" }}>
                 {/* @ts-ignore */}
                 <Dialog.CloseTrigger asChild>
                   <Button loading={isLoading} variant="secondary">

@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 
 import { useFieldArray, useForm } from "react-hook-form";
 
-import { Box, Fieldset, GridItem, IconButton, Separator, SimpleGrid, Stack } from "@chakra-ui/react";
+import { Box, Fieldset, GridItem, HStack, IconButton, Image, Separator, SimpleGrid, Stack } from "@chakra-ui/react";
 import { EditProceduresFormValues, resolver } from "./schema";
 import { TextField } from "./text-field";
 
@@ -44,68 +44,81 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
             <Stack spaceY={{ base: "2", md: "32px" }}>
               {fields.map((field, index) => (
                 <Box key={field.fieldId} position="relative">
-                  {index !== 0 ? <Separator hideFrom="md" /> : null}
-                  <IconButton
-                    position="absolute"
-                    variant="surface"
-                    size="sm"
-                    bottom="1"
-                    left="-10"
-                    onClick={() => remove(index)}
-                  >
-                    x
-                  </IconButton>
-                  <SimpleGrid
-                    columns={{ base: 2, md: 5 }}
-                    gapX={{ base: "4", md: "48px" }}
-                    gapY={{ base: "4", md: "0" }}
-                  >
-                    <GridItem colSpan={{ base: 2, md: 1 }}>
-                      <TextField
-                        label={`Procedimiento ${index + 1}`}
-                        placeholder="Ej: 4563523"
-                        w="full"
-                        maxWidth={{ md: "181px" }}
-                        {...register(`procedures.${index}.name`)}
-                      />
-                    </GridItem>
-                    <GridItem>
-                      <TextField
-                        label="Código"
-                        placeholder="Ej: 4563523"
-                        w="full"
-                        maxWidth={{ md: "146px" }}
-                        {...register(`procedures.${index}.code`)}
-                      />
-                    </GridItem>
-                    <GridItem>
-                      <TextField
-                        label="Reclamado RD$"
-                        placeholder="Ej: 4563523"
-                        w="full"
-                        maxWidth={{ md: "146px" }}
-                        {...register(`procedures.${index}.claimed`)}
-                      />
-                    </GridItem>
-                    <GridItem>
-                      <TextField
-                        label="Diferencia RD$"
-                        placeholder="Ej: 4563523"
-                        w="full"
-                        maxWidth={{ md: "146px" }}
-                        {...register(`procedures.${index}.difference`)}
-                      />
-                    </GridItem>
-                    <GridItem>
-                      <TextField
-                        label="Autorizado RD$"
-                        placeholder="Ej: 4563523"
-                        w="full"
-                        maxWidth={{ md: "146px" }}
-                        {...register(`procedures.${index}.authorized`)}
-                      />
-                    </GridItem>
-                  </SimpleGrid>
+                  {index !== 0 ? <Separator my="4" hideFrom="md" /> : null}
+                  <HStack alignItems="flex-end">
+                    <IconButton
+                      hideBelow="md"
+                      mb="1"
+                      type="button"
+                      variant="surface"
+                      size="sm"
+                      onClick={() => remove(index)}
+                    >
+                      <Image src="/assets/trash.svg" />
+                    </IconButton>
+                    <SimpleGrid
+                      columns={{ base: 2, md: 5 }}
+                      gapX={{ base: "4", md: "48px" }}
+                      gapY={{ base: "4", md: "0" }}
+                    >
+                      <GridItem colSpan={{ base: 2, md: 1 }}>
+                        <HStack alignItems="flex-end">
+                          <TextField
+                            label={`Procedimiento ${index + 1}`}
+                            placeholder="Ej: 4563523"
+                            w="full"
+                            maxWidth={{ md: "181px" }}
+                            {...register(`procedures.${index}.name`)}
+                          />
+                          <IconButton
+                            hideFrom={{ base: "md" }}
+                            type="button"
+                            variant="surface"
+                            size="sm"
+                            onClick={() => remove(index)}
+                          >
+                            <Image src="/assets/trash.svg" />
+                          </IconButton>
+                        </HStack>
+                      </GridItem>
+                      <GridItem>
+                        <TextField
+                          label="Código"
+                          placeholder="Ej: 4563523"
+                          w="full"
+                          maxWidth={{ md: "146px" }}
+                          {...register(`procedures.${index}.code`)}
+                        />
+                      </GridItem>
+                      <GridItem>
+                        <TextField
+                          label="Reclamado RD$"
+                          placeholder="Ej: 4563523"
+                          w="full"
+                          maxWidth={{ md: "146px" }}
+                          {...register(`procedures.${index}.claimed`)}
+                        />
+                      </GridItem>
+                      <GridItem>
+                        <TextField
+                          label="Diferencia RD$"
+                          placeholder="Ej: 4563523"
+                          w="full"
+                          maxWidth={{ md: "146px" }}
+                          {...register(`procedures.${index}.difference`)}
+                        />
+                      </GridItem>
+                      <GridItem>
+                        <TextField
+                          label="Autorizado RD$"
+                          placeholder="Ej: 4563523"
+                          w="full"
+                          maxWidth={{ md: "146px" }}
+                          {...register(`procedures.${index}.authorized`)}
+                        />
+                      </GridItem>
+                    </SimpleGrid>
+                  </HStack>
                 </Box>
               ))}
             </Stack>
