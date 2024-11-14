@@ -79,7 +79,10 @@ export const EditProcedures: React.FC = () => {
                   </Button>
                 </Dialog.CloseTrigger>
                 <Button loading={isLoading} form="edit-procedures-form">
-                  Guardar Cambios
+                  <HStack>
+                    <Image src="/assets/check.svg" />
+                    <Text>Guardar Cambios</Text>
+                  </HStack>
                 </Button>
               </Dialog.Footer>
             </Dialog.Content>
