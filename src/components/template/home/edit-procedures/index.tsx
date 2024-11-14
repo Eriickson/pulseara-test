@@ -9,9 +9,7 @@ export const EditProcedures = () => {
       <Dialog.Root placement="center" size={"2xl" as any}>
         <Dialog.Backdrop />
         <Dialog.Trigger>
-          <Button fontWeight="bold" h="32px" w="max-content" backgroundColor="#3f48ad">
-            Editar procedimientos
-          </Button>
+          <Button>Editar procedimientos</Button>
         </Dialog.Trigger>
         <Dialog.Content>
           <Dialog.CloseTrigger />

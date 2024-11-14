@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Box, Button, chakra, Dialog, Fieldset, Heading, HStack, Text } from "@chakra-ui/react";
+import { Box, chakra, Dialog, Fieldset, Heading, HStack, Text } from "@chakra-ui/react";
 import { TextField } from "./text-field";
+import { Button } from "../../../../ui/button";
 
 export const EditProceduresForm = () => {
   return (
@@ -30,21 +31,9 @@ export const EditProceduresForm = () => {
         </Fieldset.Legend>
         <HStack mt="40px" justifyContent="flex-end">
           <Dialog.CloseTrigger>
-            <Button
-              fontWeight="bold"
-              h="32px"
-              w="max-content"
-              variant="outline"
-              borderWidth="2px"
-              borderColor="#D6D6EB"
-              color="##6E6D8C"
-            >
-              Cancelar
-            </Button>
+            <Button variant="secondary">Cancelar</Button>
           </Dialog.CloseTrigger>
-          <Button fontWeight="bold" h="32px" w="max-content" backgroundColor="#3f48ad">
-            Guardar Cambios
-          </Button>
+          <Button>Guardar Cambios</Button>
         </HStack>
       </Fieldset.Root>
     </Box>
