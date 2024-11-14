@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 export const schema = zod.object({
   procedures: zod.array(
     zod.object({
-      id: zod.string(),
+      id: zod.string().optional(),
       name: zod.string(),
       code: zod.string(),
       procedureNumber: zod.number(),

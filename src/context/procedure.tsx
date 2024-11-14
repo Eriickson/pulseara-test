@@ -1,7 +1,6 @@
 import React, { Context, createContext, useContext, useEffect, useState } from "react";
 
 import { generateClient, GraphQLResult } from "aws-amplify/api";
-import { v4 as uuidv4 } from "uuid";
 
 import { IProcedure } from "../types/procedure";
 import { listProcedures } from "../graphql/queries";
@@ -12,7 +11,7 @@ import { EditProceduresFormValues } from "../components/template/home/edit-proce
 
 export interface ProcedureContextValue {
   procedures: IProcedure[];
-  updateProcedures(procedures: IProcedure[]): Promise<void>;
+  updateProcedures(procedures: EditProceduresFormValues["procedures"]): Promise<void>;
 }
 
 export const ProcedureContext = createContext<ProcedureContextValue | undefined>(
@@ -32,13 +31,13 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
     const proceduresToDelete = newProcedures.filter((procedure) => procedure.delete);
 
     const proceduresToCreate = newProcedures
-      .filter((procedure) => procedure.id === "" && !procedure.delete)
+      .filter((procedure) => !procedure.id && !procedure.delete)
       .map((procedure) => {
         const { delete: _, ...procedureWithoutDelete } = procedure;
         return procedureWithoutDelete;
       });
     const proceduresToUpdate = newProcedures
-      .filter((procedure) => procedure.id !== "" && !procedure.delete)
+      .filter((procedure) => procedure.id && !procedure.delete)
       .map((procedure) => {
         const { delete: _, ...procedureWithoutDelete } = procedure;
         return procedureWithoutDelete;
@@ -46,11 +45,11 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
 
     await Promise.all(
       proceduresToCreate.map(async (procedure) => {
-        procedure.id = uuidv4();
+        const { id, ...procedureWithoutId } = procedure;
 
         const response = (await client.graphql({
           query: createProcedure,
-          variables: { input: procedure },
+          variables: { input: procedureWithoutId },
         })) as GraphQLResult<{ createProcedure: IProcedure }>;
         return response.data.createProcedure;
       })
@@ -91,8 +90,6 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       }>;
 
       const procedures = result.data?.listProcedures.items || [];
-
-      console.log(procedures);
 
       setProcedures(procedures.sort((a, b) => a.procedureNumber - b.procedureNumber));
     } catch (err) {
