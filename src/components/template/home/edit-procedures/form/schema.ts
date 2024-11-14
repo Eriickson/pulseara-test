@@ -12,6 +12,7 @@ export const schema = zod.object({
       claimed: zod.string(),
       difference: zod.string(),
       authorized: zod.string(),
+      delete: zod.boolean(),
     })
   ),
 });

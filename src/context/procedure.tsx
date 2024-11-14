@@ -7,7 +7,8 @@ import { IProcedure } from "../types/procedure";
 import { listProcedures } from "../graphql/queries";
 import { diff } from "deep-object-diff";
 
-import { updateProcedure, createProcedure } from "../graphql/mutations";
+import { updateProcedure, createProcedure, deleteProcedure } from "../graphql/mutations";
+import { EditProceduresFormValues } from "../components/template/home/edit-procedures/form/schema";
 
 export interface ProcedureContextValue {
   procedures: IProcedure[];
@@ -27,9 +28,21 @@ const client = generateClient();
 export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children }) => {
   const [procedures, setProcedures] = useState<IProcedure[]>([]);
 
-  async function updateProcedures(newProcedures: IProcedure[]) {
-    const proceduresToCreate = newProcedures.filter((procedure) => procedure.id === "");
-    const proceduresToUpdate = newProcedures.filter((procedure) => procedure.id !== "");
+  async function updateProcedures(newProcedures: EditProceduresFormValues["procedures"]) {
+    const proceduresToDelete = newProcedures.filter((procedure) => procedure.delete);
+
+    const proceduresToCreate = newProcedures
+      .filter((procedure) => procedure.id === "" && !procedure.delete)
+      .map((procedure) => {
+        const { delete: _, ...procedureWithoutDelete } = procedure;
+        return procedureWithoutDelete;
+      });
+    const proceduresToUpdate = newProcedures
+      .filter((procedure) => procedure.id !== "" && !procedure.delete)
+      .map((procedure) => {
+        const { delete: _, ...procedureWithoutDelete } = procedure;
+        return procedureWithoutDelete;
+      });
 
     await Promise.all(
       proceduresToCreate.map(async (procedure) => {
@@ -59,6 +72,15 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
         })
     );
 
+    await Promise.all(
+      proceduresToDelete.map(async (procedure) => {
+        await client.graphql({
+          query: deleteProcedure,
+          variables: { input: { id: procedure.id } },
+        });
+      })
+    );
+
     await getProcedures();
   }
 
@@ -69,6 +91,8 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       }>;
 
       const procedures = result.data?.listProcedures.items || [];
+
+      console.log(procedures);
 
       setProcedures(procedures.sort((a, b) => a.procedureNumber - b.procedureNumber));
     } catch (err) {

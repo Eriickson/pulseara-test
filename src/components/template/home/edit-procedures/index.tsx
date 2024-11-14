@@ -60,7 +60,11 @@ export const EditProcedures: React.FC = () => {
               </Flex>
             </Dialog.Header>
             <Dialog.Body padding={{ md: "58px" }}>
-              <EditProceduresForm onSubmit={handleSubmit} ref={editProceduresFormRef} defaultValues={{ procedures }} />
+              <EditProceduresForm
+                onSubmit={handleSubmit}
+                ref={editProceduresFormRef}
+                defaultValues={{ procedures: procedures.map((procedure) => ({ ...procedure, delete: false })) }}
+              />
             </Dialog.Body>
             <Dialog.Footer>
               {/* @ts-ignore */}
