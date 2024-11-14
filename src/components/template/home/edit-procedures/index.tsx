@@ -18,7 +18,8 @@ export const EditProcedures: React.FC = () => {
     <>
       <Dialog.Root scrollBehavior="inside" placement="center" size={{ md: "cover" }}>
         <Dialog.Backdrop />
-        <Dialog.Trigger>
+        {/* @ts-ignore */}
+        <Dialog.Trigger asChild>
           <Button>Editar procedimientos</Button>
         </Dialog.Trigger>
         <Dialog.Positioner>
