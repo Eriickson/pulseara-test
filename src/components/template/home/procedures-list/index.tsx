@@ -12,7 +12,7 @@ export const procedures: IProcedure[] = [
 
 export const ProceduresList = () => {
   return (
-    <List.Root listStyle="none" spaceY="12px">
+    <List.Root listStyle="none" spaceY={{ base: "2", md: "12px" }}>
       {procedures.map((procedure, index) => (
         <ProceduresListItem procedureNumber={index + 1} procedure={procedure} key={index} />
       ))}
