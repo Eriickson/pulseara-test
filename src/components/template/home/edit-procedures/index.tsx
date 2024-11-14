@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Dialog, Flex, Heading, chakra, Text } from "@chakra-ui/react";
+import { Dialog, Flex, Heading, chakra } from "@chakra-ui/react";
 
 import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
@@ -33,10 +33,10 @@ export const EditProcedures: React.FC = () => {
                   cursor="pointer"
                   onClick={() => editProceduresFormRef.current?.addProcedure()}
                   w="max-content"
+                  fontWeight="bold"
+                  color="#07B284"
                 >
-                  <Text fontWeight="bold" color="#07B284">
-                    Añadir procedimiento
-                  </Text>
+                  Añadir procedimiento
                 </chakra.button>
               </Flex>
             </Dialog.Header>

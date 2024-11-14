@@ -1,8 +1,10 @@
 import React, { forwardRef, useImperativeHandle } from "react";
+
 import { useFieldArray, useForm } from "react-hook-form";
+
 import { Box, Fieldset, GridItem, Separator, SimpleGrid, Stack } from "@chakra-ui/react";
-import { TextField } from "./text-field";
 import { EditProceduresFormValues, resolver } from "./schema";
+import { TextField } from "./text-field";
 
 export interface EditProceduresFormRef {
   addProcedure(): void;
