@@ -4,11 +4,18 @@ import { Dialog, Flex, Heading, chakra, Text } from "@chakra-ui/react";
 
 import { EditProceduresForm } from "./form";
 import { Button } from "../../../ui/button";
-import { EditProceduresFormValues } from "./form/schema";
+import { EditProceduresFormValues, resolver } from "./form/schema";
 import { procedures } from "../procedures-list";
+import { useFieldArray, useForm } from "react-hook-form";
 
 export const EditProcedures: React.FC = () => {
-  async function handleSubmit(values: EditProceduresFormValues) {
+  const { control, register, handleSubmit } = useForm<EditProceduresFormValues>({
+    resolver: resolver,
+    defaultValues: { procedures },
+  });
+  const { fields, append } = useFieldArray({ control, name: "procedures" });
+
+  async function onSubmit(values: EditProceduresFormValues) {
     console.log(values);
   }
 
@@ -29,8 +36,16 @@ export const EditProcedures: React.FC = () => {
                 </Heading>
                 <chakra.button
                   cursor="pointer"
-                  // onClick={() => append({ authorized: "", claimed: "", code: "", difference: "", name: "" })}
-                  type="button"
+                  onClick={() =>
+                    append({
+                      id: "",
+                      authorized: "",
+                      claimed: "",
+                      code: "",
+                      difference: "",
+                      name: "",
+                    })
+                  }
                   w="max-content"
                 >
                   <Text fontWeight="bold" color="#07B284">
@@ -40,7 +55,9 @@ export const EditProcedures: React.FC = () => {
               </Flex>
             </Dialog.Header>
             <Dialog.Body padding={{ md: "58px" }}>
-              <EditProceduresForm onSubmit={handleSubmit} defaultValues={{ procedures }} />
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <EditProceduresForm register={register} defaultValues={{ procedures: fields }} />
+              </form>
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.CloseTrigger>

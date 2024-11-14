@@ -10,7 +10,7 @@ interface IButtonProps {
   asChild?: boolean;
 }
 
-export const Button: FC<IButtonProps> = ({ asChild, children, variant = "primary", onClick, type }) => {
+export const Button: FC<IButtonProps> = ({ asChild, children, variant = "primary", onClick, type = "button" }) => {
   return (
     <ChakraButton
       fontWeight="bold"

@@ -6,8 +6,8 @@ import { ProceduresListItem } from "./item";
 import { IProcedure } from "../../../../types/procedure";
 
 export const procedures: IProcedure[] = [
-  { name: "Procedure 1", code: "12345", claimed: "1000", difference: "200", authorized: "800" },
-  { name: "Procedure 2", code: "67890", claimed: "1500", difference: "300", authorized: "1200" },
+  { id: "1", name: "Procedure 1", code: "12345", claimed: "1000", difference: "200", authorized: "800" },
+  { id: "2", name: "Procedure 2", code: "67890", claimed: "1500", difference: "300", authorized: "1200" },
 ];
 
 export const ProceduresList = () => {
