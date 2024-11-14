@@ -9,7 +9,7 @@ export const ProceduresList = () => {
   const { procedures } = useProcedure();
 
   return (
-    <List.Root listStyle="none" spaceY={{ base: "2", md: "12px" }} w={{ base: "full", md: "max-content" }}>
+    <List.Root listStyle="none" spaceY={{ base: "2", md: "12px" }} w={{ base: "full", xl: "max-content" }}>
       {procedures.map((procedure, index) => (
         <ProceduresListItem procedureNumber={index + 1} procedure={procedure} key={procedure.id} />
       ))}

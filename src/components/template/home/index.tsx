@@ -11,7 +11,12 @@ export const HomePageTemplate = () => {
 
   return (
     <Flex minH="100vh" backgroundColor="#EDF3F1">
-      <Container maxW="1440px" paddingX={{ base: "4", md: "88px" }} paddingY={{ base: "4", md: "99px" }} flex="1">
+      <Container
+        maxW="1440px"
+        paddingX={{ base: "4", md: "8", lg: "88px" }}
+        paddingY={{ base: "4", md: "8", lg: "99px" }}
+        flex="1"
+      >
         <Stack h="full" alignItems="flex-start" gapY={{ base: "4", md: "35px" }}>
           <Box>
             <Heading
