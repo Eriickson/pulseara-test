@@ -30,23 +30,15 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
   const [procedures, setProcedures] = useState<IProcedure[]>([]);
 
   async function updateProcedures(newProcedures: EditProceduresFormValues["procedures"]) {
-    const proceduresToDelete = newProcedures.filter((procedure) => procedure.delete);
+    const proceduresToDelete = procedures.filter(
+      (procedure) => !newProcedures.find((newProcedure) => newProcedure.id === procedure.id)
+    );
 
     console.log(proceduresToDelete);
 
-    const proceduresToCreate = newProcedures
-      .filter((procedure) => !procedure.id && !procedure.delete)
-      .map((procedure) => {
-        const { delete: _, ...procedureWithoutDelete } = procedure;
-        return procedureWithoutDelete;
-      });
+    const proceduresToCreate = newProcedures.filter((procedure) => !procedure.id);
 
-    const proceduresToUpdate = newProcedures
-      .filter((procedure) => procedure.id && !procedure.delete)
-      .map((procedure) => {
-        const { delete: _, ...procedureWithoutDelete } = procedure;
-        return procedureWithoutDelete;
-      });
+    const proceduresToUpdate = newProcedures.filter((procedure) => procedure.id);
 
     await Promise.all(
       proceduresToCreate.map(async (procedure) => {
