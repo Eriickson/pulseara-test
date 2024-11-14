@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Box } from "@chakra-ui/react";
+
 export const EditProceduresForm = () => {
-  return <div>EditProceduresForm</div>;
+  return <Box>EditProceduresForm</Box>;
 };
