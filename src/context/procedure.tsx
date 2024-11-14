@@ -11,6 +11,7 @@ import { EditProceduresFormValues } from "../components/template/home/edit-proce
 
 export interface ProcedureContextValue {
   procedures: IProcedure[];
+  isLoading: boolean;
   updateProcedures(procedures: EditProceduresFormValues["procedures"]): Promise<void>;
 }
 
@@ -25,11 +26,11 @@ interface IProcedureProviderProps {
 const client = generateClient();
 
 export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [procedures, setProcedures] = useState<IProcedure[]>([]);
 
   async function updateProcedures(newProcedures: EditProceduresFormValues["procedures"]) {
     const proceduresToDelete = newProcedures.filter((procedure) => procedure.delete);
-
 
     console.log(proceduresToDelete);
 
@@ -90,6 +91,7 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
   }
 
   async function getProcedures() {
+    setIsLoading(true);
     try {
       const result = (await client.graphql({ query: listProcedures })) as GraphQLResult<{
         listProcedures: { items: IProcedure[] };
@@ -101,13 +103,19 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
     } catch (err) {
       console.log("Error fetching procedures", err);
     }
+
+    setIsLoading(false);
   }
 
   useEffect(() => {
     getProcedures();
   }, []);
 
-  return <ProcedureContext.Provider value={{ procedures, updateProcedures }}>{children}</ProcedureContext.Provider>;
+  return (
+    <ProcedureContext.Provider value={{ procedures, updateProcedures, isLoading }}>
+      {children}
+    </ProcedureContext.Provider>
+  );
 };
 
 export const useProcedure = () => {
