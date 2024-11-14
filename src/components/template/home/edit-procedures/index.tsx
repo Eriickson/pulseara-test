@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Dialog } from "@chakra-ui/react";
+import { Dialog, Portal } from "@chakra-ui/react";
 
 import { EditProceduresForm } from "./form";
 import { Button } from "../../../ui/button";
@@ -14,17 +14,21 @@ export const EditProcedures: React.FC = () => {
 
   return (
     <>
-      <Dialog.Root placement="center" size="cover">
+      <Dialog.Root placement="center" size="lg">
         <Dialog.Backdrop />
         <Dialog.Trigger>
           <Button>Editar procedimientos</Button>
         </Dialog.Trigger>
-        <Dialog.Content>
-          <Dialog.CloseTrigger />
-          <Dialog.Body padding="58px">
-            <EditProceduresForm onSubmit={handleSubmit} defaultValues={{ procedures: procedures }} />
-          </Dialog.Body>
-        </Dialog.Content>
+        <Portal>
+          <Dialog.Positioner>
+            <Dialog.Content>
+              <Dialog.CloseTrigger />
+              <Dialog.Body padding="58px">
+                <EditProceduresForm onSubmit={handleSubmit} defaultValues={{ procedures: procedures }} />
+              </Dialog.Body>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
       </Dialog.Root>
     </>
   );
