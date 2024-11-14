@@ -6,7 +6,7 @@ import { EditProceduresForm } from "./form";
 export const EditProcedures = () => {
   return (
     <>
-      <Dialog.Root placement="center">
+      <Dialog.Root placement="center" size={"2xl" as any}>
         <Dialog.Backdrop />
         <Dialog.Trigger>
           <Button fontWeight="bold" h="32px" w="max-content" backgroundColor="#3f48ad">
