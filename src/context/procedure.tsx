@@ -30,12 +30,16 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
   async function updateProcedures(newProcedures: EditProceduresFormValues["procedures"]) {
     const proceduresToDelete = newProcedures.filter((procedure) => procedure.delete);
 
+
+    console.log(proceduresToDelete);
+
     const proceduresToCreate = newProcedures
       .filter((procedure) => !procedure.id && !procedure.delete)
       .map((procedure) => {
         const { delete: _, ...procedureWithoutDelete } = procedure;
         return procedureWithoutDelete;
       });
+
     const proceduresToUpdate = newProcedures
       .filter((procedure) => procedure.id && !procedure.delete)
       .map((procedure) => {
@@ -73,6 +77,8 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
 
     await Promise.all(
       proceduresToDelete.map(async (procedure) => {
+        console.log(procedure.id);
+
         await client.graphql({
           query: deleteProcedure,
           variables: { input: { id: procedure.id } },

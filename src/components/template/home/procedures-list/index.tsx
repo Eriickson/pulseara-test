@@ -11,7 +11,7 @@ export const ProceduresList = () => {
   return (
     <List.Root listStyle="none" spaceY={{ base: "2", md: "12px" }} w={{ base: "full", md: undefined }}>
       {procedures.map((procedure, index) => (
-        <ProceduresListItem procedureNumber={index + 1} procedure={procedure} key={index} />
+        <ProceduresListItem procedureNumber={index + 1} procedure={procedure} key={procedure.id} />
       ))}
     </List.Root>
   );

@@ -22,7 +22,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
       defaultValues,
     });
 
-    const { fields, append, update } = useFieldArray({ control, name: "procedures" });
+    const { fields, append, update } = useFieldArray({ control, name: "procedures", keyName: "fieldId" });
 
     useImperativeHandle(ref, () => ({
       addProcedure() {
@@ -38,6 +38,8 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
       },
     }));
 
+    console.log(fields);
+
     return (
       <Box as="form" onSubmit={handleSubmit(onSubmit)} id="edit-procedures-form">
         <Fieldset.Root size="lg">
@@ -46,7 +48,7 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
               {fields
                 .filter((field) => !field.delete)
                 .map((field, index) => (
-                  <Box key={field.id} position="relative">
+                  <Box key={field.fieldId} position="relative">
                     {index !== 0 ? <Separator hideFrom="md" /> : null}
                     <IconButton
                       position="absolute"
