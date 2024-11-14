@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pulsearatest-dev-fc41d-authRole",
+      "UnauthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-fc41d-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::060795938765:role/amplify-pulsearatest-dev-fc41d-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-pulsearatest-dev-fc41d-deployment",
+      "UnauthRoleName": "amplify-pulsearatest-dev-fc41d-unauthRole",
+      "StackName": "amplify-pulsearatest-dev-fc41d",
+      "StackId": "arn:aws:cloudformation:us-east-2:060795938765:stack/amplify-pulsearatest-dev-fc41d/76798570-a29f-11ef-b460-02419c0b2a1d",
+      "AmplifyAppId": "d30dfguv7mqp8r"
+    },
+    "categories": {
+      "api": {
+        "pulsearatest": {}
+      }
+    }
+  }
+}

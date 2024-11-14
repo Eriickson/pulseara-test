@@ -6,12 +6,32 @@ import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
 import { EditProceduresFormValues } from "./form/schema";
 import { procedures } from "../procedures-list";
+import { generateClient } from "aws-amplify/api";
+import { createProcedure } from "../../../../graphql/mutations";
+
+const client = generateClient();
 
 export const EditProcedures: React.FC = () => {
   const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
   async function handleSubmit(values: EditProceduresFormValues) {
-    console.log(values);
+
+    const newValue = {
+      ...values.procedures[0],
+      id: "2",
+    };
+
+    try {
+      const result = await client.graphql({
+        query: createProcedure,
+        variables: {
+          input: newValue,
+        },
+      });
+      console.log(result);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
