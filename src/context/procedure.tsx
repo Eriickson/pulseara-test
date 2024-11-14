@@ -67,7 +67,9 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
         listProcedures: { items: IProcedure[] };
       }>;
 
-      setProcedures(result.data?.listProcedures.items || []);
+      const procedures = result.data?.listProcedures.items || [];
+
+      setProcedures(procedures.sort((a, b) => a.procedureNumber - b.procedureNumber));
     } catch (err) {
       console.log("Error fetching procedures", err);
     }

@@ -9,6 +9,7 @@ export const onCreateProcedure = /* GraphQL */ `
       id
       name
       code
+      procedureNumber
       claimed
       difference
       authorized
@@ -26,6 +27,7 @@ export const onUpdateProcedure = /* GraphQL */ `
       id
       name
       code
+      procedureNumber
       claimed
       difference
       authorized
@@ -43,6 +45,7 @@ export const onDeleteProcedure = /* GraphQL */ `
       id
       name
       code
+      procedureNumber
       claimed
       difference
       authorized

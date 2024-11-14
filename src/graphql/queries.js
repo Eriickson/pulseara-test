@@ -7,6 +7,7 @@ export const getProcedure = /* GraphQL */ `
       id
       name
       code
+      procedureNumber
       claimed
       difference
       authorized
@@ -17,15 +18,23 @@ export const getProcedure = /* GraphQL */ `
   }
 `;
 export const listProcedures = /* GraphQL */ `
-  query ListProcedures($filter: ModelProcedureFilterInput, $limit: Int, $nextToken: String) {
+  query ListProcedures(
+    $filter: ModelProcedureFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
     listProcedures(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name
         code
+        procedureNumber
         claimed
         difference
         authorized
+        createdAt
+        updatedAt
+        __typename
       }
       nextToken
       __typename
