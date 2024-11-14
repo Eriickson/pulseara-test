@@ -79,6 +79,15 @@ export const EditProceduresForm = forwardRef<EditProceduresFormRef, IEditProcedu
                         {...register(`procedures.${index}.difference`)}
                       />
                     </GridItem>
+                    <GridItem>
+                      <TextField
+                        label="Autorizado RD$"
+                        placeholder="Ej: 4563523"
+                        w="full"
+                        maxWidth={{ md: "146px" }}
+                        {...register(`procedures.${index}.authorized`)}
+                      />
+                    </GridItem>
                   </SimpleGrid>
                 </React.Fragment>
               ))}

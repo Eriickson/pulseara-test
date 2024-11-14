@@ -25,7 +25,26 @@ const client = generateClient();
 export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children }) => {
   const [procedures, setProcedures] = useState<IProcedure[]>([]);
 
-  async function updateProcedures(procedures: IProcedure[]) {}
+  async function updateProcedures(procedures: IProcedure[]) {
+    const proceduresToCreate = procedures.filter((procedure) => procedure.id === "");
+    const proceduresToUpdate = procedures.filter((procedure) => procedure.id !== "");
+
+    const updatedProcedures = await Promise.all(
+      proceduresToCreate.map(async (procedure) => {
+        procedure.id = uuidv4();
+
+        const response = (await client.graphql({
+          query: createProcedure,
+          variables: { input: procedure },
+        })) as GraphQLResult<{ createProcedure: IProcedure }>;
+        return response.data.createProcedure;
+      })
+    );
+    console.log(updatedProcedures);
+    console.log(proceduresToUpdate);
+
+    setProcedures((prev) => [...prev, ...updatedProcedures]);
+  }
 
   async function getProcedures() {
     try {
@@ -36,11 +55,6 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       console.log(result.data?.listProcedures.items);
 
       setProcedures(result.data?.listProcedures.items || []);
-
-      /* setProcedures([
-      { id: "1", name: "Procedure 1", code: "12345", claimed: "1000", difference: "200", authorized: "800" },
-      { id: "2", name: "Procedure 2", code: "67890", claimed: "1500", difference: "300", authorized: "1200" },
-    ]); */
     } catch (err) {}
   }
 
