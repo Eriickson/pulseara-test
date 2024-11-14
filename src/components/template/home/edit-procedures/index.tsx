@@ -44,11 +44,12 @@ export const EditProcedures: React.FC = () => {
           <Dialog.Content>
             <Dialog.CloseTrigger />
             <Dialog.Header>
-              <Flex flexDirection="column">
+              <Flex alignItems={{ md: "center" }} flexDirection={{ base: "column", md: "row" }}>
                 <Heading color="#1E2469" fontSize={{ md: "32px" }} lineHeight={{ md: "44.8px" }}>
                   Procedimientos
                 </Heading>
                 <chakra.button
+                  ml={{ md: "14" }}
                   cursor="pointer"
                   onClick={() => editProceduresFormRef.current?.addProcedure()}
                   w="max-content"
