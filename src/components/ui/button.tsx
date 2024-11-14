@@ -5,9 +5,11 @@ import { Button as ChakraButton } from "@chakra-ui/react";
 interface IButtonProps {
   children: React.ReactNode;
   variant?: "primary" | "secondary";
+  onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
-export const Button: FC<IButtonProps> = ({ children, variant = "primary" }) => {
+export const Button: FC<IButtonProps> = ({ children, variant = "primary", onClick, type }) => {
   return (
     <ChakraButton
       fontWeight="bold"
@@ -18,18 +20,10 @@ export const Button: FC<IButtonProps> = ({ children, variant = "primary" }) => {
       color={variant === "primary" ? "white" : "#6E6D8C"}
       borderWidth={variant === "primary" ? "0" : "2px"}
       borderColor={variant === "primary" ? "transparent" : "#D6D6EB"}
+      onClick={onClick}
+      type={type}
     >
       {children}
     </ChakraButton>
   );
 };
-
-/*  
-fontWeight="bold"
-              h="32px"
-              w="max-content"
-              variant="outline"
-              borderWidth="2px"
-              borderColor="#D6D6EB"
-              color="##6E6D8C"
-*/

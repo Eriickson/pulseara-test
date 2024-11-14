@@ -1,10 +1,16 @@
 import React from "react";
 
 import { Dialog } from "@chakra-ui/react";
+
 import { EditProceduresForm } from "./form";
 import { Button } from "../../../ui/button";
+import { EditProceduresFormValues } from "./form/schema";
 
-export const EditProcedures = () => {
+export const EditProcedures: React.FC = () => {
+  async function handleSubmit(values: EditProceduresFormValues) {
+    console.log({ values });
+  }
+
   return (
     <>
       <Dialog.Root placement="center" size={"2xl" as any}>
@@ -18,7 +24,7 @@ export const EditProcedures = () => {
             <Dialog.Title />
           </Dialog.Header>
           <Dialog.Body>
-            <EditProceduresForm />
+            <EditProceduresForm onSubmit={handleSubmit} />
           </Dialog.Body>
           <Dialog.Footer />
         </Dialog.Content>
