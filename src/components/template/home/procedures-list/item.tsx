@@ -13,16 +13,9 @@ interface IProceduresListItemProps {
 export const ProceduresListItem: React.FC<IProceduresListItemProps> = ({ procedure, procedureNumber }) => {
   return (
     <List.Item>
-      <Box
-        borderRadius="10px"
-        backgroundColor="white"
-        py="16px"
-        px={{ base: "4", md: "34px" }}
-        pr="94px"
-        w={{ base: "full" }}
-      >
-        <SimpleGrid columns={{ base: 1, lg: 6 }} gapX={{ md: "78px" }} gapY={{ base: "7px" }}>
-          <GridItem colSpan={{ lg: 2 }}>
+      <Box borderRadius="10px" backgroundColor="white" py="16px" px={{ base: "4", lg: "34px" }} w={{ base: "full" }}>
+        <SimpleGrid columns={{ base: 1, md: 5, xl: 6 }} gapX={{ md: "78px" }} gapY={{ base: "7px" }}>
+          <GridItem colSpan={{ xl: 2 }}>
             <ProceduresListItemSection mode="text" label={`Procedimiento ${procedureNumber}`} value={procedure.name} />
           </GridItem>
           <GridItem>
