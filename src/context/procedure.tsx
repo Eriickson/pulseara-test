@@ -51,10 +51,9 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       })
     );
 
-    console.log(createdProcedures);
-    console.log(proceduresToUpdate);
+    let newProcedures = [...createdProcedures, ...updatedProcedures];
 
-    setProcedures([...procedures, ...createdProcedures, ...updatedProcedures]);
+    setProcedures(newProcedures);
   }
 
   async function getProcedures() {

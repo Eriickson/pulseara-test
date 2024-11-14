@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Dialog, Flex, Heading, chakra } from "@chakra-ui/react";
 
@@ -8,17 +8,27 @@ import { EditProceduresFormValues } from "./form/schema";
 import { useProcedure } from "../../../../context/procedure";
 
 export const EditProcedures: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
   const { procedures, updateProcedures } = useProcedure();
 
   const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
   async function handleSubmit(values: EditProceduresFormValues) {
     await updateProcedures(values.procedures);
+
+    setOpen(false);
   }
 
   return (
     <>
-      <Dialog.Root scrollBehavior="inside" placement="center" size={{ md: "cover" }}>
+      <Dialog.Root
+        scrollBehavior="inside"
+        placement="center"
+        size={{ md: "cover" }}
+        open={open}
+        onOpenChange={(e: { open: boolean }) => setOpen(e.open)}
+      >
         <Dialog.Backdrop />
         {/* @ts-ignore */}
         <Dialog.Trigger asChild>
