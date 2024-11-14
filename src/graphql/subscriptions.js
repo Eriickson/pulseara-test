@@ -1,87 +1,63 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateProcedure = /* GraphQL */ `
-  subscription OnCreateProcedure(
-    $filter: ModelSubscriptionProcedureFilterInput
+export const onCreateProcedures = /* GraphQL */ `
+  subscription OnCreateProcedures(
+    $filter: ModelSubscriptionProceduresFilterInput
   ) {
-    onCreateProcedure(filter: $filter) {
+    onCreateProcedures(filter: $filter) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onUpdateProcedure = /* GraphQL */ `
-  subscription OnUpdateProcedure(
-    $filter: ModelSubscriptionProcedureFilterInput
+export const onUpdateProcedures = /* GraphQL */ `
+  subscription OnUpdateProcedures(
+    $filter: ModelSubscriptionProceduresFilterInput
   ) {
-    onUpdateProcedure(filter: $filter) {
+    onUpdateProcedures(filter: $filter) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const onDeleteProcedure = /* GraphQL */ `
-  subscription OnDeleteProcedure(
-    $filter: ModelSubscriptionProcedureFilterInput
+export const onDeleteProcedures = /* GraphQL */ `
+  subscription OnDeleteProcedures(
+    $filter: ModelSubscriptionProceduresFilterInput
   ) {
-    onDeleteProcedure(filter: $filter) {
+    onDeleteProcedures(filter: $filter) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onCreateTodo(filter: $filter) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onUpdateTodo(filter: $filter) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onDeleteTodo(filter: $filter) {
-      id
-      name
-      description
       createdAt
       updatedAt
       __typename

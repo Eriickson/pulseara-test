@@ -1,99 +1,66 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createProcedure = /* GraphQL */ `
-  mutation CreateProcedure(
-    $input: CreateProcedureInput!
-    $condition: ModelProcedureConditionInput
+export const createProcedures = /* GraphQL */ `
+  mutation CreateProcedures(
+    $input: CreateProceduresInput!
+    $condition: ModelProceduresConditionInput
   ) {
-    createProcedure(input: $input, condition: $condition) {
+    createProcedures(input: $input, condition: $condition) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const updateProcedure = /* GraphQL */ `
-  mutation UpdateProcedure(
-    $input: UpdateProcedureInput!
-    $condition: ModelProcedureConditionInput
+export const updateProcedures = /* GraphQL */ `
+  mutation UpdateProcedures(
+    $input: UpdateProceduresInput!
+    $condition: ModelProceduresConditionInput
   ) {
-    updateProcedure(input: $input, condition: $condition) {
+    updateProcedures(input: $input, condition: $condition) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
       createdAt
       updatedAt
       __typename
     }
   }
 `;
-export const deleteProcedure = /* GraphQL */ `
-  mutation DeleteProcedure(
-    $input: DeleteProcedureInput!
-    $condition: ModelProcedureConditionInput
+export const deleteProcedures = /* GraphQL */ `
+  mutation DeleteProcedures(
+    $input: DeleteProceduresInput!
+    $condition: ModelProceduresConditionInput
   ) {
-    deleteProcedure(input: $input, condition: $condition) {
+    deleteProcedures(input: $input, condition: $condition) {
+      procedures {
+        id
+        name
+        code
+        claimed
+        difference
+        authorized
+        __typename
+      }
       id
-      name
-      code
-      claimed
-      difference
-      authorized
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createTodo = /* GraphQL */ `
-  mutation CreateTodo(
-    $input: CreateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    createTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateTodo = /* GraphQL */ `
-  mutation UpdateTodo(
-    $input: UpdateTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    updateTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteTodo = /* GraphQL */ `
-  mutation DeleteTodo(
-    $input: DeleteTodoInput!
-    $condition: ModelTodoConditionInput
-  ) {
-    deleteTodo(input: $input, condition: $condition) {
-      id
-      name
-      description
       createdAt
       updatedAt
       __typename

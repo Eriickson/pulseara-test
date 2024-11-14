@@ -2,12 +2,14 @@ import React from "react";
 
 import { Dialog, Flex, Heading, chakra } from "@chakra-ui/react";
 
+import { v4 as uuidv4 } from "uuid";
+
 import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
 import { EditProceduresFormValues } from "./form/schema";
 import { procedures } from "../procedures-list";
 import { generateClient } from "aws-amplify/api";
-import { createProcedure } from "../../../../graphql/mutations";
+import { createProcedures } from "../../../../graphql/mutations";
 
 const client = generateClient();
 
@@ -15,18 +17,10 @@ export const EditProcedures: React.FC = () => {
   const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
   async function handleSubmit(values: EditProceduresFormValues) {
-
-    const newValue = {
-      ...values.procedures[0],
-      id: "2",
-    };
-
     try {
       const result = await client.graphql({
-        query: createProcedure,
-        variables: {
-          input: newValue,
-        },
+        query: createProcedures,
+        variables: { input: { id: uuidv4(), procedures: values.procedures[0] } },
       });
       console.log(result);
     } catch (err) {

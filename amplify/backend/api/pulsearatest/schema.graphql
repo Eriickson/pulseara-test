@@ -11,9 +11,3 @@ type Procedure @model {
   difference: String!
   authorized: String!
 }
-
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
-}

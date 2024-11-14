@@ -12,7 +12,7 @@ const client = generateClient();
 export const HomePageTemplate = () => {
   async function getProcedures() {
     try {
-      const result = await client.graphql({ query: listProcedures });
+      const result = await client.graphql({ query: listProcedures, variables: { limit: 1 } });
 
       console.log(result);
     } catch (err) {
