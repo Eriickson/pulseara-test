@@ -47,6 +47,10 @@ export const ProcedureProvider: React.FC<IProcedureProviderProps> = ({ children 
       proceduresToUpdate
         .filter((procedureToFilter) => {
           const procedureFound = procedures.find((procedure) => procedure.id === procedureToFilter.id);
+          console.log(Object.keys(diff(procedureFound!, procedureToFilter)).length);
+          console.log({ procedureFound, procedureToFilter });
+          
+          
           return procedureFound ? Object.keys(diff(procedureFound, procedureToFilter)).length > 0 : false;
         })
         .map(async (procedure) => {
