@@ -21,13 +21,9 @@ export const EditProcedures: React.FC = () => {
         </Dialog.Trigger>
         <Dialog.Content>
           <Dialog.CloseTrigger />
-          <Dialog.Header>
-            <Dialog.Title />
-          </Dialog.Header>
-          <Dialog.Body>
+          <Dialog.Body padding="58px">
             <EditProceduresForm onSubmit={handleSubmit} defaultValues={{ procedures: procedures }} />
           </Dialog.Body>
-          <Dialog.Footer />
         </Dialog.Content>
       </Dialog.Root>
     </>
