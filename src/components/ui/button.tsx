@@ -9,6 +9,7 @@ interface IButtonProps {
   type?: "button" | "submit" | "reset";
   asChild?: boolean;
   form?: string;
+  loading?: boolean;
 }
 
 export const Button: FC<IButtonProps> = ({
@@ -18,6 +19,7 @@ export const Button: FC<IButtonProps> = ({
   variant = "primary",
   onClick,
   type = "button",
+  loading,
 }) => {
   return (
     <ChakraButton
@@ -33,6 +35,7 @@ export const Button: FC<IButtonProps> = ({
       type={form ? "submit" : type}
       asChild={asChild}
       form={form}
+      disabled={loading}
     >
       {children}
     </ChakraButton>

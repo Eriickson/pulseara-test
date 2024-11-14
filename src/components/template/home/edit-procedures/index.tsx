@@ -8,6 +8,7 @@ import { EditProceduresFormValues } from "./form/schema";
 import { useProcedure } from "../../../../context/procedure";
 
 export const EditProcedures: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
   const { procedures, updateProcedures } = useProcedure();
@@ -15,9 +16,14 @@ export const EditProcedures: React.FC = () => {
   const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
   async function handleSubmit(values: EditProceduresFormValues) {
-    await updateProcedures(values.procedures);
-
-    setOpen(false);
+    setIsLoading(true);
+    try {
+      await updateProcedures(values.procedures);
+      setOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -59,9 +65,13 @@ export const EditProcedures: React.FC = () => {
             <Dialog.Footer>
               {/* @ts-ignore */}
               <Dialog.CloseTrigger asChild>
-                <Button variant="secondary">Cancelar</Button>
+                <Button loading={isLoading} variant="secondary">
+                  Cancelar
+                </Button>
               </Dialog.CloseTrigger>
-              <Button form="edit-procedures-form">Guardar Cambios</Button>
+              <Button loading={isLoading} form="edit-procedures-form">
+                Guardar Cambios
+              </Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
