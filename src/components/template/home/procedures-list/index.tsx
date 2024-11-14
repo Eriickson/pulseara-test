@@ -1,6 +1,8 @@
 import React from "react";
-import { ProceduresListItem } from "./item";
+
 import { List } from "@chakra-ui/react";
+
+import { ProceduresListItem } from "./item";
 import { IProcedure } from "../../../../types/procedure";
 
 export const procedures: IProcedure[] = [
