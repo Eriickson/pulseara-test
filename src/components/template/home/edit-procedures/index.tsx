@@ -36,16 +36,7 @@ export const EditProcedures: React.FC = () => {
                 </Heading>
                 <chakra.button
                   cursor="pointer"
-                  onClick={() =>
-                    append({
-                      id: "",
-                      authorized: "",
-                      claimed: "",
-                      code: "",
-                      difference: "",
-                      name: "",
-                    })
-                  }
+                  onClick={() => append({ id: "", authorized: "", claimed: "", code: "", difference: "", name: "" })}
                   w="max-content"
                 >
                   <Text fontWeight="bold" color="#07B284">
