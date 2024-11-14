@@ -2,20 +2,15 @@ import React from "react";
 
 import { Dialog, Flex, Heading, chakra, Text } from "@chakra-ui/react";
 
-import { EditProceduresForm } from "./form";
+import { EditProceduresForm, EditProceduresFormRef } from "./form";
 import { Button } from "../../../ui/button";
-import { EditProceduresFormValues, resolver } from "./form/schema";
+import { EditProceduresFormValues } from "./form/schema";
 import { procedures } from "../procedures-list";
-import { useFieldArray, useForm } from "react-hook-form";
 
 export const EditProcedures: React.FC = () => {
-  const { control, register, handleSubmit } = useForm<EditProceduresFormValues>({
-    resolver: resolver,
-    defaultValues: { procedures },
-  });
-  const { fields, append } = useFieldArray({ control, name: "procedures" });
+  const editProceduresFormRef = React.useRef<EditProceduresFormRef>(null);
 
-  async function onSubmit(values: EditProceduresFormValues) {
+  async function handleSubmit(values: EditProceduresFormValues) {
     console.log(values);
   }
 
@@ -36,7 +31,7 @@ export const EditProcedures: React.FC = () => {
                 </Heading>
                 <chakra.button
                   cursor="pointer"
-                  onClick={() => append({ id: "", authorized: "", claimed: "", code: "", difference: "", name: "" })}
+                  onClick={() => editProceduresFormRef.current?.addProcedure()}
                   w="max-content"
                 >
                   <Text fontWeight="bold" color="#07B284">
@@ -46,15 +41,13 @@ export const EditProcedures: React.FC = () => {
               </Flex>
             </Dialog.Header>
             <Dialog.Body padding={{ md: "58px" }}>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <EditProceduresForm register={register} defaultValues={{ procedures: fields }} />
-              </form>
+              <EditProceduresForm onSubmit={handleSubmit} ref={editProceduresFormRef} defaultValues={{ procedures }} />
             </Dialog.Body>
             <Dialog.Footer>
               <Dialog.CloseTrigger>
                 <Button variant="secondary">Cancelar</Button>
               </Dialog.CloseTrigger>
-              <Button type="submit">Guardar Cambios</Button>
+              <Button onClick={() => editProceduresFormRef.current?.onSubmit()}>Guardar Cambios</Button>
             </Dialog.Footer>
           </Dialog.Content>
         </Dialog.Positioner>
